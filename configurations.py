@@ -1,4 +1,4 @@
-# Starter code for Data Centric Programming Assignment 2025
+# Data Centric Programming Assignment 2025
 
 # os is a module that lets us access the file systemr
 import os 
@@ -15,7 +15,6 @@ SQLITE_DB_PATH = os.path.join(BASE_DIR, "tunes.db")
 # load .env but used later
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
-# placeholders to be extended later
 SUPPORTED_DATABASES = {"sqlite", "mysql"}
 ACTIVE_DATABASE = "sqlite"
 MYSQL_CONFIG = {}
