@@ -5,7 +5,8 @@ from tkinter import messagebox, simpledialog
 
 import configurations
 import db_connection
-
+import db_query
+import data_analysis
 
 def start_gui():
     """Start Tkinter GUI with basic layout and output box."""
