@@ -15,7 +15,7 @@ def get_mysql_connection():
 
 def get_sqlite_connection():
     """Open SQLite connection using config.SQLITE_DB_PATH."""
-   try:
+    try:
         return sqlite3.connect(configurations.SQLITE_DB_PATH)
     except sqlite3.Error as err:
         print("Error connecting to SQLite:", err)
