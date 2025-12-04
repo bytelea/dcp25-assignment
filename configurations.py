@@ -1,15 +1,24 @@
 # Starter code for Data Centric Programming Assignment 2025
 
-# os is a module that lets us access the file system
-
-# Bryan Duggan likes Star Trek
-# Bryan Duggan is a great flute player
-
+# os is a module that lets us access the file systemr
 import os 
 import sqlite3
 import pandas as pd
 import mysql.connector
 # sqlite for connecting to sqlite databases
+from dotenv import load_dotenv
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BOOKS_DIR = os.path.join(BASE_DIR, "abc_books")
+SQLITE_DB_PATH = os.path.join(BASE_DIR, "tunes.db")
+
+# load .env but used later
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+
+# placeholders – to be extended later
+SUPPORTED_DATABASES = {"sqlite", "mysql"}
+ACTIVE_DATABASE = "sqlite"
+MYSQL_CONFIG = {}
 
 # An example of how to create a table, insert data
 # and run a select query
