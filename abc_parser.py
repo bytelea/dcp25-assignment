@@ -61,3 +61,30 @@ def parse_abc_file(file_path: str) -> List[Dict]:
         tunes.append(current_tune)
 
     return tunes
+  
+  
+def load_all_tunes() -> List[Dict]:
+    """
+    Walk through BOOKS_DIR, find all .abc files in each book folder,
+    parse them, and return one big list of tunes.
+    """
+    all_tunes: List[Dict] = []
+
+    if not os.path.isdir(BOOKS_DIR):
+        print(f"Books directory not found: {BOOKS_DIR}")
+        return all_tunes
+
+    for item in os.listdir(BOOKS_DIR):
+        item_path = os.path.join(BOOKS_DIR, item)
+        if os.path.isdir(item_path) and item.isdigit():
+            print(f"Found book directory: {item}")
+            for fname in os.listdir(item_path):
+                if fname.lower().endswith(".abc"):
+                    file_path = os.path.join(item_path, fname)
+                    print(f"  Found ABC file: {fname}")
+                    tunes = parse_abc_file(file_path)
+                    print(f"    Parsed {len(tunes)} tunes from this file")
+                    all_tunes.extend(tunes)
+
+    print(f"\nTotal tunes parsed from all books: {len(all_tunes)}")
+    return all_tunes
