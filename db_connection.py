@@ -53,3 +53,57 @@ def run_with_connection(callback, *args, **kwargs):
         callback(conn, *args, **kwargs)
     finally:
         conn.close()
+        
+        
+def create_tunes_table_sqlite(conn):
+    """Create tunes table in SQLite if needed."""
+    sql = """
+    CREATE TABLE IF NOT EXISTS tunes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        book TEXT,
+        filename TEXT,
+        x TEXT,
+        t TEXT,
+        r TEXT,
+        m TEXT,
+        k TEXT,
+        body TEXT
+    );
+    """
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    conn.commit()
+    cursor.close()
+
+
+def clear_tunes_table_sqlite(conn):
+    """Delete all rows from the SQLite tunes table."""
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM tunes;")
+    conn.commit()
+    cursor.close()
+
+
+def insert_tunes_sqlite(conn, tunes):
+    """Insert parsed tunes into the SQLite tunes table."""
+    sql = """
+    INSERT INTO tunes (book, filename, x, t, r, m, k, body)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    """
+    rows = [
+        (
+            t.get("book", ""),
+            t.get("filename", ""),
+            t.get("X", ""),
+            t.get("T", ""),
+            t.get("R", ""),
+            t.get("M", ""),
+            t.get("K", ""),
+            t.get("body", "")
+        )
+        for t in tunes
+    ]
+    cursor = conn.cursor()
+    cursor.executemany(sql, rows)
+    conn.commit()
+    cursor.close()
