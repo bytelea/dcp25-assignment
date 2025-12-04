@@ -1,7 +1,8 @@
 import sqlite3
 import mysql.connector
 import configurations
-
+from typing import Optional
+from abc_parser import load_all_tunes
 
 def get_mysql_connection():
     """Open MySQL connection using config.MYSQL_CONFIG."""
@@ -89,6 +90,59 @@ def insert_tunes_sqlite(conn, tunes):
     sql = """
     INSERT INTO tunes (book, filename, x, t, r, m, k, body)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    """
+    rows = [
+        (
+            t.get("book", ""),
+            t.get("filename", ""),
+            t.get("X", ""),
+            t.get("T", ""),
+            t.get("R", ""),
+            t.get("M", ""),
+            t.get("K", ""),
+            t.get("body", "")
+        )
+        for t in tunes
+    ]
+    cursor = conn.cursor()
+    cursor.executemany(sql, rows)
+    conn.commit()
+    cursor.close()
+    
+def create_tunes_table_mysql(conn):
+    """Create tunes table in MySQL if needed."""
+    sql = """
+    CREATE TABLE IF NOT EXISTS tunes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        book VARCHAR(100),
+        filename VARCHAR(200),
+        x VARCHAR(50),
+        t TEXT,
+        r VARCHAR(100),
+        m VARCHAR(50),
+        k VARCHAR(50),
+        body TEXT
+    );
+    """
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    conn.commit()
+    cursor.close()
+
+
+def clear_tunes_table_mysql(conn):
+    """Delete all rows from the MySQL tunes table."""
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM tunes;")
+    conn.commit()
+    cursor.close()
+
+
+def insert_tunes_mysql(conn, tunes):
+    """Insert parsed tunes into the MySQL tunes table."""
+    sql = """
+    INSERT INTO tunes (book, filename, x, t, r, m, k, body)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
     """
     rows = [
         (
