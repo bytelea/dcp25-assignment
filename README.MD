@@ -2,13 +2,24 @@
 
 - [Assignment Brief](assignment.md)
 
-Name:
+Name: Lea Stanisavljevic
 
-Student Number: 
+Student Number: A00046044
 
 # Screenshots
 
 # Description of the project
+This project is a small data-processing application built for the Data Centric Programming module (DATA2005).
+Its main goal is to take a collection of traditional music files written in ABC notation, extract all of the individual tunes, store them in a databas and then allow the user to browse, search and analyse the tunes in an interface.
+
+It is written in python. It uses SQLite and MySQL for the database of teh tunes. It has a simple Tkinter GUI for the user to query the database without needing to use the terminal. The GUI displays results in an output window using stdout so the same backend functions work both in console mode and in the GI.
+
+Main Features
+- file parsing
+- a database
+- SQL querying
+- data analysis using pandas
+- basic gui design
 
 # Instructions for use
 
@@ -104,3 +115,4 @@ This is a table:
 |Some stuff | Some more stuff in this column |
 
 |Some stuff | Some more stuff in this column |
+
