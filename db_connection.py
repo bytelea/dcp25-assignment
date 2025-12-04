@@ -196,3 +196,20 @@ def rebuild_database(target: Optional[str] = None):
         conn.close()
 
     print("\nDatabase rebuild complete.\n")
+    
+def fetch_all(conn, sql, params=()):
+    """Execute a SELECT and return all rows."""
+    cursor = conn.cursor()
+    cursor.execute(prepare_sql(sql, conn), params)
+    rows = cursor.fetchall()
+    cursor.close()
+    return rows
+
+
+def fetch_one(conn, sql, params=()):
+    """Execute a SELECT and return a single row (or None)."""
+    cursor = conn.cursor()
+    cursor.execute(prepare_sql(sql, conn), params)
+    row = cursor.fetchone()
+    cursor.close()
+    return row
