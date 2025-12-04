@@ -42,5 +42,3 @@ Main Features
 Bla bla bla
 
 # What I learned
-
-Bla bla bla
