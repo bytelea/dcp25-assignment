@@ -161,3 +161,38 @@ def insert_tunes_mysql(conn, tunes):
     cursor.executemany(sql, rows)
     conn.commit()
     cursor.close()
+    
+def rebuild_database(target: Optional[str] = None):
+    """
+    Rebuild SQLite or MySQL database from ABC files.
+    - loads tunes via abc_parser.load_all_tunes()
+    - recreates tunes table
+    - clears old data
+    - inserts fresh data
+    """
+    target_db = (target or configurations.ACTIVE_DATABASE).strip().lower()
+    if target_db not in configurations.SUPPORTED_DATABASES:
+        print(f"Unsupported database backend: {target_db}")
+        return
+
+    print(f"\nRebuilding {target_db.upper()} database from ABC files...\n")
+    tunes = load_all_tunes()
+
+    if target_db == "mysql":
+        conn = get_mysql_connection()
+        if conn is None:
+            return
+        create_tunes_table_mysql(conn)
+        clear_tunes_table_mysql(conn)
+        insert_tunes_mysql(conn, tunes)
+        conn.close()
+    else:
+        conn = get_sqlite_connection()
+        if conn is None:
+            return
+        create_tunes_table_sqlite(conn)
+        clear_tunes_table_sqlite(conn)
+        insert_tunes_sqlite(conn, tunes)
+        conn.close()
+
+    print("\nDatabase rebuild complete.\n")
