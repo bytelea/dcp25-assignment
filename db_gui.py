@@ -1,7 +1,7 @@
 import contextlib
 import io
 import tkinter as tk
-from tkinter import messagebox, simpledialog5
+from tkinter import messagebox, simpledialog
 
 import configurations
 import db_connection
