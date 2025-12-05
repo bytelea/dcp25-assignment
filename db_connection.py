@@ -12,7 +12,6 @@ def get_mysql_connection():
         print("Error connecting to MySQL:", err)
         return None
 
-
 def get_sqlite_connection():
     """Open SQLite connection using config.SQLITE_DB_PATH."""
     try:
@@ -21,10 +20,8 @@ def get_sqlite_connection():
         print("Error connecting to SQLite:", err)
         return None
 
-
 def is_sqlite_connection(conn) -> bool:
     return isinstance(conn, sqlite3.Connection)
-
 
 def prepare_sql(sql: str, conn) -> str:
     """
@@ -33,7 +30,6 @@ def prepare_sql(sql: str, conn) -> str:
     if is_sqlite_connection(conn):
         return sql.replace("%s", "?")
     return sql
-
 
 def open_active_connection():
     """Open connection based on config.ACTIVE_DATABASE."""
@@ -44,7 +40,6 @@ def open_active_connection():
     print(f"Unsupported database backend: {configurations.ACTIVE_DATABASE}")
     return None
 
-
 def run_with_connection(callback, *args, **kwargs):
     """Open connection, run callback(conn,...), then close."""
     conn = open_active_connection()
@@ -53,8 +48,7 @@ def run_with_connection(callback, *args, **kwargs):
     try:
         callback(conn, *args, **kwargs)
     finally:
-        conn.close()
-        
+        conn.close()      
         
 def create_tunes_table_sqlite(conn):
     """Create tunes table in SQLite if needed."""
