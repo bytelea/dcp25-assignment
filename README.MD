@@ -7,7 +7,7 @@ Name: Lea Stanisavljevic
 Student Number: A00046044
 
 # Screenshots
-![mainimage.png](images/mainimage.png) 
+![mainimage](images/mainimage.PNG) 
 # Description of the project
 This project is a small data-processing application built for the Data Centric Programming module (DATA2005).
 Its main goal is to take a collection of traditional music files written in ABC notation, extract all of the individual tunes, store them in a databas and then allow the user to browse, search and analyse the tunes in an interface.
@@ -16,13 +16,13 @@ It is written in python. It uses SQLite and MySQL for the database of teh tunes.
 
 Main Features
 - file parsing
-![An image](images/list20tunes.png) 
+![An image](images/list20tunes.PNG) 
 - a database
-![An image](images/rebuilddatabase.png) 
+![An image](images/rebuilddatabase.PNG) 
 - SQL querying
-![An image](images/searchbytitle.png) 
+![An image](images/searchbytitle.PNG) 
 - data analysis using pandas
-![pandas](images/pandasana.png)
+![pandas](images/pandasana.PNG)
 - basic gui design
 
 # Instructions for use
