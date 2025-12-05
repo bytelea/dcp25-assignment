@@ -7,7 +7,7 @@ Name: Lea Stanisavljevic
 Student Number: A00046044
 
 # Screenshots
-
+![mainimage.png](images/mainimage.png) 
 # Description of the project
 This project is a small data-processing application built for the Data Centric Programming module (DATA2005).
 Its main goal is to take a collection of traditional music files written in ABC notation, extract all of the individual tunes, store them in a databas and then allow the user to browse, search and analyse the tunes in an interface.
@@ -16,9 +16,13 @@ It is written in python. It uses SQLite and MySQL for the database of teh tunes.
 
 Main Features
 - file parsing
+![An image](images/list20tunes.png) 
 - a database
+![An image](images/rebuilddatabase.png) 
 - SQL querying
+![An image](images/searchbytitle.png) 
 - data analysis using pandas
+![pandas](images/pandasana.png)
 - basic gui design
 
 # Instructions for use
@@ -116,7 +120,7 @@ This prevents code duplication and the data is only displayed in the gui.
 | db_connection.py | Modified from reference |
 | db_analysis.py | Modified from reference |
 | db_gui.py | Modified from reference and refined with Windsurf |
-| db_query.py | Modified from [GUI](https://www.youtube.com/watch?v=ibf5cx221hk) |
+| db_query.py | Modified from reference |
 | abc_parser.py | Modified from reference |
 | abc_books | Provided by lecturer |
 | tunes.db | Provided by lecturer |
@@ -125,7 +129,8 @@ This prevents code duplication and the data is only displayed in the gui.
 | README.MD | Self written but refined with ChatGPT |
 
 # References
-* Bryan Duggan Lecture Notes - Tkinter GUI Programming: A Comprehensive Guide to Python's built-in GUI Library
+* Bryan Duggan Lecture Notes and Labs
+* [Advice from developers @ Give(A)Go Hackatons](https://www.giveago.co/)
 * [ABC Notation](https://abcnotation.com/wiki/abc:standard:v2.1)
 * [Graphical user interfaces with Tk](https://docs.python.org/3/library/tk.html)
 * [GUI Window](https://www.youtube.com/watch?v=ibf5cx221hk)
